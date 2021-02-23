@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState } from "react";
+import styled from "styled-components";
+
+const TitleText = styled.p`
+  text-align: center;
+`;
+
+const Complaints = styled.textarea`
+  resize: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 function App() {
+  const [compla, setCompla] = useState("");
+
+  const handleChange = (e: React.FormEvent<HTMLTextAreaElement>) =>
+    setCompla(e.currentTarget.value);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TitleText>Blast complaints!</TitleText>
+      <Complaints value={compla} onChange={handleChange} rows={10} cols={60}>
+        あなたの愚痴や不満を書き出してみよう！
+      </Complaints>
+      <p>{compla}</p>
+      <p>愚痴を書き込んだら下のfont bombをクリック！</p>
+      <p>後は任意の所をクリックするだけで爆破できるよ！！</p>
     </div>
   );
 }
